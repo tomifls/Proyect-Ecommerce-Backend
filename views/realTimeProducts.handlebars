@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos en Tiempo Real</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/realtime.css">
+</head>
+<body>
+    <h1>Productos en Tiempo Real</h1>
+
+    <ul id="productsList" class="product-list-realtime"></ul>
+
+    <h2>Agregar Producto</h2>
+    <form id="productForm">
+        <input type="text" id="title" placeholder="Título" required>
+        <input type="number" id="price" placeholder="Precio" required>
+        <button type="submit">Agregar Producto</button>
+    </form>
+
+    <h2>Eliminar Producto</h2>
+    <form id="deleteForm">
+        <input type="text" id="deleteProductId" placeholder="ID del Producto" required>
+        <button type="submit">Eliminar Producto</button>
+    </form>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/socketClient.js"></script>
+</body>
+</html>
