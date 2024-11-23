@@ -16,7 +16,18 @@ socket.on('productosActualizados', (productos) => {
     });
 });
 
-// Enviar producto desde formulario
+document.getElementById('productForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    agregarProducto();
+});
+
+document.getElementById('deleteForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const id = document.getElementById('deleteProductId').value;
+    eliminarProducto(id);
+});
+
+// Enviar producto formulario
 function agregarProducto() {
     const nombre = document.getElementById('nombreProducto').value;
     const precio = document.getElementById('precioProducto').value;

@@ -11,7 +11,7 @@
     <h1>Lista de Productos</h1>
     <ul>
         {{#each productos}}
-        <li>{{this.title}} - ${{this.price}}</li>
+        <li>{{this.name}} - ${{this.price}}</li>
         {{/each}}
     </ul>
     <script src="/socket.io/socket.io.js"></script>
