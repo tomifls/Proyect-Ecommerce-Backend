@@ -1,25 +1,29 @@
-const express = require('express');
-const router = express.Router();
-const { getProducts, addProduct, deleteProduct } = require('../controllers/productsController');
+router.get('/products', async (req, res) => {
+    const { limit = 10, page = 1, sort, query } = req.query;
 
-// Ruta para obtener productos
-router.get('/', async (req, res) => {
-    const productos = await getProducts();
-    res.json(productos);
+    try {
+        const filters = query
+            ? { $or: [{ category: query }, { available: query === 'true' }] }
+            : {};
+        const sortOptions = sort === 'asc' ? { price: 1 } : sort === 'desc' ? { price: -1 } : {};
+
+        const products = await Product.paginate(filters, {
+            limit: parseInt(limit),
+            page: parseInt(page),
+            sort: sortOptions,
+        });
+
+        res.render('products', {
+            products: products.docs,
+            totalPages: products.totalPages,
+            currentPage: products.page,
+            hasNextPage: products.hasNextPage,
+            hasPrevPage: products.hasPrevPage,
+            prevPage: products.prevPage,
+            nextPage: products.nextPage,
+        });
+    } catch (error) {
+        console.error('Error al cargar productos:', error);
+        res.status(500).send('Error al cargar productos');
+    }
 });
-
-// Ruta para agregar un producto
-router.post('/', async (req, res) => {
-    const producto = req.body;
-    await addProduct(producto);
-    res.status(201).json({ message: 'Producto agregado' });
-});
-
-// Ruta para eliminar un producto
-router.delete('/:id', async (req, res) => {
-    const { id } = req.params;
-    await deleteProduct(id);
-    res.json({ message: 'Producto eliminado' });
-});
-
-module.exports = router;

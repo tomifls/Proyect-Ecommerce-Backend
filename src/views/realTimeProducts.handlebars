@@ -25,6 +25,24 @@
         <button type="submit">Eliminar Producto</button>
     </form>
 
+    <h1>Productos</h1>
+<ul>
+    {{#each products}}
+    <li>{{this.name}} - ${{this.price}} - {{this.category}}</li>
+    {{/each}}
+</ul>
+
+<div class="pagination">
+    {{#if hasPrevPage}}
+    <a href="?page={{prevPage}}">Anterior</a>
+    {{/if}}
+    <span>Página {{currentPage}} de {{totalPages}}</span>
+    {{#if hasNextPage}}
+    <a href="?page={{nextPage}}">Siguiente</a>
+    {{/if}}
+</div>
+
+
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/socketClient.js"></script>
 </body>

@@ -1,17 +1,19 @@
 {
-  "name": "proyect-ecommerce",
+  "name": "proyecto-ecommerce",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Proyecto Backend para eCommerce",
+  "main": "src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "mongodb": "^6.11.0",
+    "mongoose": "^7.0.0",
+    "mongoose-paginate-v2": "^1.7.0"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.21.1",
-    "express-handlebars": "^8.0.1",
-    "socket.io": "^4.8.1"
-  }
+  "author": "Tomas",
+  "license": "ISC"
 }
